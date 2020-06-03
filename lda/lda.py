@@ -31,7 +31,7 @@ class LDA:
     alpha : float, default 0.1
         Dirichlet parameter for distribution over topics
 
-    eta : float, default 0.01
+    eta : float, default 0.01                               # mtfelix: 在很多文献中，这个常用beta来表达。
         Dirichlet parameter for distribution over words
 
     random_state : int or RandomState, optional
