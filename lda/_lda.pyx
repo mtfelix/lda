@@ -68,7 +68,7 @@ def _sample_topics(int[:] WS, int[:] DS, int[:] ZS, int[:, :] nzw, int[:, :] ndz
                 dist_sum[k] = dist_cum
 
             r = rands[i % n_rand] * dist_cum  # dist_cum == dist_sum[-1]
-            z_new = searchsorted(dist_sum, n_topics, r)
+            z_new = searchsorted(dist_sum, n_topics, r) # mtfelix: 用类似alias采样法获取多项式分布下的采样
 
             ZS[i] = z_new
             inc(nzw[z_new, w])
