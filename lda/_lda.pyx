@@ -64,11 +64,11 @@ def _sample_topics(int[:] WS, int[:] DS, int[:] ZS, int[:, :] nzw, int[:, :] ndz
             dist_cum = 0
             for k in range(n_topics):
                 # eta is a double so cdivision yields a double
-                dist_cum += (nzw[k, w] + eta[w]) / (nz[k] + eta_sum) * (ndz[d, k] + alpha[k])
+                dist_cum += (nzw[k, w] + eta[w]) / (nz[k] + eta_sum) * (ndz[d, k] + alpha[k]) # mtfelix: 对应[pe4ta, heinrich]中公式(79)
                 dist_sum[k] = dist_cum
 
             r = rands[i % n_rand] * dist_cum  # dist_cum == dist_sum[-1]
-            z_new = searchsorted(dist_sum, n_topics, r) # mtfelix: 用类似alias采样法获取多项式分布下的采样
+            z_new = searchsorted(dist_sum, n_topics, r) # mtfelix: 用类似alias采样法获取多项式分布下的采样， 可能不是alias法。
 
             ZS[i] = z_new
             inc(nzw[z_new, w])
